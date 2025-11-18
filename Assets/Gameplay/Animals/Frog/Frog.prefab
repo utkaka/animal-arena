@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3367977250324473661}
   - component: {fileID: 1781866066485180630}
   - component: {fileID: -7515717503331516903}
+  - component: {fileID: 6297116638225449747}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -77,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbad17d39a3864350a5c4d65d3c6a856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: {fileID: 11400000, guid: 20c1d2599df1645e58ef15ed7b4cc4b2, type: 2}
 --- !u!114 &-7515717503331516903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +95,19 @@ MonoBehaviour:
   _jumpHeight: 1
   _maxJumpDistance: 3
   _stopDistance: 0.5
+--- !u!114 &6297116638225449747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367977250324473654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9d1fbbc2a74459a7a52b55f6dd19cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animal: {fileID: 1781866066485180630}
 --- !u!1 &7518829587409967617
 GameObject:
   m_ObjectHideFlags: 0

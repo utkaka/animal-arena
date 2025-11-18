@@ -647,6 +647,8 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _spawnConfig: {fileID: 11400000, guid: 90415f315c9d146609d8c3026e0a6f83, type: 2}
+  _interactionsConfig: {fileID: 11400000, guid: 6e6a222e8320e4197b1630639c779bff,
+    type: 2}
 --- !u!1 &1755143869
 GameObject:
   m_ObjectHideFlags: 0

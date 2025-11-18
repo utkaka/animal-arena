@@ -23,7 +23,6 @@ namespace AnimalArena.Animals.Movement.Agents
         [Inject]
         public void Construct(IMovementSystem movementSystem)
         {
-            Debug.Log("Construct");
             _movementSystem =  movementSystem;
         }
         

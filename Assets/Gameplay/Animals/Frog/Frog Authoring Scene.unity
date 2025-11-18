@@ -689,6 +689,8 @@ MonoBehaviour:
   - {fileID: 1954541295}
   - {fileID: 906221536}
   _spawnConfig: {fileID: 11400000, guid: cec171aeb46e94d369245688303cd1c6, type: 2}
+  _interactionsConfig: {fileID: 11400000, guid: 6e6a222e8320e4197b1630639c779bff,
+    type: 2}
 --- !u!1001 &906221535
 PrefabInstance:
   m_ObjectHideFlags: 0
