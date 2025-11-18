@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AnimalArena.Animals
+namespace AnimalArena.Animals.Collisions
 {
     public interface IAnimalCollisionSystem
     {

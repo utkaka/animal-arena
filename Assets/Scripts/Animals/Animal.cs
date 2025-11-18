@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 namespace AnimalArena.Animals
 {
-    [RequireComponent(typeof(IMovementAgent))]
     public class Animal : MonoBehaviour
     {
         [SerializeField]
@@ -16,14 +15,6 @@ namespace AnimalArena.Animals
         public AnimalType Type => _type;
 
         private IMovementAgent _movementAgent;
-        private IAssetProvider _assetProvider;
-
-        [Inject]
-        public void Construct(IAssetProvider assetProvider)
-        {
-            _assetProvider = assetProvider;
-        }
-    
 
         private void Awake()
         {
@@ -53,12 +44,10 @@ namespace AnimalArena.Animals
             _movementAgent.MoveTo(dir);
         }
 
-        public void Die()
+        public void MarkAsDead()
         {
-            if (IsDead) return;
             IsDead = true;
             _movementAgent.Stop();
-            _assetProvider.Release(gameObject);
         }
     }
 }

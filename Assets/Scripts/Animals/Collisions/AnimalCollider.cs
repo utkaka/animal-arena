@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using VContainer;
 
-namespace AnimalArena.Animals
+namespace AnimalArena.Animals.Collisions
 {
     public class AnimalCollider : MonoBehaviour
     {

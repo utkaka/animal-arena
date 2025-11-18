@@ -1,4 +1,5 @@
 using AnimalArena.Animals;
+using AnimalArena.Animals.Collisions;
 using AnimalArena.Animals.Interactions;
 using AnimalArena.Animals.Movement;
 using AnimalArena.Assets;

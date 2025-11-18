@@ -2,15 +2,17 @@ using System;
 using AnimalArena.Animals.Interactions;
 using UnityEngine;
 
-namespace AnimalArena.Animals
+namespace AnimalArena.Animals.Collisions
 {
     public class AnimalCollisionSystem : IAnimalCollisionSystem
     {
         private readonly IInteractionResolver _interactionResolver;
+        private readonly IAnimalsController _animalsController;
 
-        public AnimalCollisionSystem(IInteractionResolver interactionResolver)
+        public AnimalCollisionSystem(IInteractionResolver interactionResolver, IAnimalsController animalsController)
         {
             _interactionResolver = interactionResolver;
+            _animalsController = animalsController;
         }
         
         public void RegisterAnimalsCollision(Animal animal, GameObject collisionObject)
@@ -29,7 +31,7 @@ namespace AnimalArena.Animals
                 case InteractionActionType.None:
                     break;
                 case InteractionActionType.Eat:
-                    animal2.Die();
+                    _animalsController.Kill(animal2);
                     return true;
                 default:
                     throw new ArgumentOutOfRangeException();
