@@ -1,5 +1,7 @@
 using AnimalArena.Animals.Movement;
+using AnimalArena.Assets;
 using UnityEngine;
+using VContainer;
 using Random = UnityEngine.Random;
 
 namespace AnimalArena.Animals
@@ -14,6 +16,13 @@ namespace AnimalArena.Animals
         public AnimalType Type => _type;
 
         private IMovementAgent _movementAgent;
+        private IAssetProvider _assetProvider;
+
+        [Inject]
+        public void Construct(IAssetProvider assetProvider)
+        {
+            _assetProvider = assetProvider;
+        }
     
 
         private void Awake()
@@ -46,11 +55,10 @@ namespace AnimalArena.Animals
 
         public void Die()
         {
-            if (IsDead)
-                return;
+            if (IsDead) return;
             IsDead = true;
             _movementAgent.Stop();
-            gameObject.SetActive(false);
+            _assetProvider.Release(gameObject);
         }
     }
 }

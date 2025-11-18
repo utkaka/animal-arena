@@ -1,6 +1,7 @@
 using AnimalArena.Animals;
 using AnimalArena.Animals.Interactions;
 using AnimalArena.Animals.Movement;
+using AnimalArena.Assets;
 using AnimalArena.Spawn;
 using UnityEngine;
 using VContainer;
@@ -19,6 +20,8 @@ namespace AnimalArena
         {
             builder.RegisterInstance(_spawnConfig).As<ISpawnConfig>();
             builder.RegisterEntryPoint<SpawnSystem>();
+            
+            builder.Register<AssetProvider>(Lifetime.Singleton) .As<IAssetProvider>();
             
             builder.RegisterInstance(_interactionsConfig).As<IInteractionConfig>();
             builder.Register<InteractionResolver>(Lifetime.Singleton) .As<IInteractionResolver>();

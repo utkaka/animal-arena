@@ -1,3 +1,4 @@
+using AnimalArena.Assets;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -6,14 +7,14 @@ namespace AnimalArena.Spawn
 {
     public class SpawnSystem : ITickable
     {
-        private readonly IObjectResolver _resolver;
+        private readonly IAssetProvider _assetProvider;
         private readonly ISpawnConfig _spawnConfig;
         private readonly Camera _camera;
         private float _nextSpawnTime;
 
-        public SpawnSystem(IObjectResolver resolver, ISpawnConfig spawnConfig, Camera camera)
+        public SpawnSystem(IAssetProvider assetProvider, ISpawnConfig spawnConfig, Camera camera)
         {
-            _resolver = resolver;
+            _assetProvider = assetProvider;
             _spawnConfig = spawnConfig;
             _camera = camera;
             ScheduleNextSpawn();
@@ -44,7 +45,7 @@ namespace AnimalArena.Spawn
             pos.y = 0f;
 
             var prefab = _spawnConfig.ObjectsList[Random.Range(0, _spawnConfig.ObjectsList.Count)];
-            var instance = _resolver.Instantiate(prefab, pos, Quaternion.identity);
+            var instance = _assetProvider.Instantiate(prefab, pos, Quaternion.identity);
 
             var rb = instance.GetComponent<Rigidbody>();
             if (rb)

@@ -30,7 +30,7 @@ namespace AnimalArena.Animals
                     break;
                 case InteractionActionType.Eat:
                     animal2.Die();
-                    break;
+                    return true;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
