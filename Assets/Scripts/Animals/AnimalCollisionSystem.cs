@@ -6,7 +6,7 @@ namespace AnimalArena.Animals
 {
     public class AnimalCollisionSystem : IAnimalCollisionSystem
     {
-        private IInteractionResolver _interactionResolver;
+        private readonly IInteractionResolver _interactionResolver;
 
         public AnimalCollisionSystem(IInteractionResolver interactionResolver)
         {

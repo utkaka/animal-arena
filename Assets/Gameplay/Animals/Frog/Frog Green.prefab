@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7515717503331516903}
   - component: {fileID: 6297116638225449747}
   m_Layer: 0
-  m_Name: Frog
+  m_Name: Frog Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidBody: {fileID: 3367977250324473661}
-  _jumpHeight: 1
+  _jumpHeight: 2
   _maxJumpDistance: 3
   _stopDistance: 0.5
 --- !u!114 &6297116638225449747
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9d1fbbc2a74459a7a52b55f6dd19cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animal: {fileID: 1781866066485180630}
 --- !u!1 &7518829587409967617
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +168,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0a8f4bc7ed00478283a577a4355b5ee, type: 2}
+  - {fileID: 2100000, guid: 4c5d48a08d2124085bdaf8d5f4b2131b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
