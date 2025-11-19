@@ -20,7 +20,7 @@ namespace AnimalArena.Assets
             _poolByInstance = new Dictionary<GameObject, ObjectPool<GameObject>>();
         }
         
-        public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
+        public GameObject Instantiate(GameObject prefab)
         {
             if (!_poolByPrefab.ContainsKey(prefab))
             {
@@ -35,6 +35,19 @@ namespace AnimalArena.Assets
             var pool = _poolByPrefab[prefab];
             var instance = pool.Get();
             _poolByInstance.Add(instance, pool);
+            return instance;
+        }
+
+        public GameObject Instantiate(GameObject prefab, Vector3 position)
+        {
+            GameObject instance = Instantiate(prefab);
+            instance.transform.position = position;
+            return instance;
+        }
+
+        public GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
+        {
+            GameObject instance = Instantiate(prefab);
             instance.transform.SetPositionAndRotation(position, rotation);
             return instance;
         }
@@ -43,6 +56,7 @@ namespace AnimalArena.Assets
         {
             if (!_poolByInstance.Remove(gameObject, out var pool))
             {
+                Debug.Log("OnDestroyInstance");
                 OnDestroyInstance(gameObject);
                 return;
             }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cea1c72b5e443d88319a096fac91b7, type: 3}
+  m_Name: EffectsConfig
+  m_EditorClassIdentifier: 
+  _effectsCanvasPrefab: {fileID: 4089287125288172592, guid: c155a42906c664d6a9c761e817a56e77,
+    type: 3}
+  _ateEffectPrefab: {fileID: 7469986739762811416, guid: ef2d3761d2ba54031a107f21220b5462,
+    type: 3}

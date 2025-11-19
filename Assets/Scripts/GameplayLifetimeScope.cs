@@ -3,6 +3,7 @@ using AnimalArena.Animals.Collisions;
 using AnimalArena.Animals.Interactions;
 using AnimalArena.Animals.Movement;
 using AnimalArena.Assets;
+using AnimalArena.Fx;
 using AnimalArena.GameField;
 using AnimalArena.Spawn;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace AnimalArena
         private ScriptableAnimalsSpawnConfig animalsSpawnConfig;
         [SerializeField]
         private ScriptableInteractionsConfig _interactionsConfig;
+        [SerializeField]
+        private ScriptableEffectsConfig _effectsConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -33,6 +36,9 @@ namespace AnimalArena
             builder.RegisterInstance(_interactionsConfig).As<IInteractionConfig>();
             builder.Register<InteractionResolver>(Lifetime.Singleton).As<IInteractionResolver>();
             builder.Register<AnimalCollisionSystem>(Lifetime.Singleton).As<IAnimalCollisionSystem>();
+            
+            builder.RegisterInstance(_effectsConfig).As<IEffectsConfig>();
+            builder.RegisterEntryPoint<CanvasEffectsSystem>();
             
             builder.RegisterEntryPoint<MovementSystem>().As<IMovementSystem>();
 

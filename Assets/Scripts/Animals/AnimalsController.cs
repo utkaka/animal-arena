@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AnimalArena.Assets;
 using AnimalArena.GameField;
@@ -8,6 +9,8 @@ namespace AnimalArena.Animals
 {
     public class AnimalsController : IAnimalsController, ITickable
     {
+        public event Action<Animal> AnimalEaten;
+        
         private IAssetProvider _assetProvider;
         private HashSet<Animal> _animals;
         private IFieldBounds _fieldBounds;
@@ -18,7 +21,7 @@ namespace AnimalArena.Animals
             _fieldBounds = fieldBounds;
             _animals = new HashSet<Animal>();
         }
-        
+
         public void OnSpawned(Animal animal)
         {
             _animals.Add(animal);
@@ -27,6 +30,7 @@ namespace AnimalArena.Animals
         public void Kill(Animal animal)
         {
             if (animal.IsDead) return;
+            AnimalEaten?.Invoke(animal);
             animal.MarkAsDead();
             _animals.Remove(animal);
             _assetProvider.Release(animal.gameObject);
@@ -39,7 +43,6 @@ namespace AnimalArena.Animals
                 Vector3 position = animal.transform.position;
                 if (!_fieldBounds.IsInside(position)) continue;
                 animal.MoveTo(_fieldBounds.GetRandomPointInside());
-
             }
         }
     }
