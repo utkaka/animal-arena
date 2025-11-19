@@ -6,6 +6,7 @@ using VContainer.Unity;
 
 namespace AnimalArena.Fx
 {
+    //FX on Canvas is a bad idea, but, probably, the easiest to implement quickly
     public class CanvasEffectsSystem : IInitializable
     {
         private readonly IEffectsConfig _effectsConfig;
@@ -28,7 +29,7 @@ namespace AnimalArena.Fx
 
         private void SetupCanvas()
         {
-            GameObject canvasObject = _assetProvider.Instantiate(_effectsConfig.CanvasPrefab);
+            GameObject canvasObject = Object.Instantiate(_effectsConfig.CanvasPrefab);
             _canvas = canvasObject.GetComponent<Canvas>();
             Assert.IsNotNull(_canvas);
             PrewarmEffects();
