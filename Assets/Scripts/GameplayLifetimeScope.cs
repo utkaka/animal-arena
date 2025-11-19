@@ -5,6 +5,7 @@ using AnimalArena.Animals.Movement;
 using AnimalArena.Assets;
 using AnimalArena.Spawn;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -12,21 +13,23 @@ namespace AnimalArena
 {
     public class GameplayLifetimeScope : LifetimeScope
     {
-        [SerializeField]
-        private ScriptableSpawnConfig _spawnConfig;
+        [FormerlySerializedAs("_spawnConfig")] [SerializeField]
+        private ScriptableAnimalsSpawnConfig animalsSpawnConfig;
         [SerializeField]
         private ScriptableInteractionsConfig _interactionsConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterInstance(_spawnConfig).As<ISpawnConfig>();
-            builder.RegisterEntryPoint<SpawnSystem>();
+            builder.RegisterInstance(animalsSpawnConfig).As<IAnimalsSpawnConfig>();
+            builder.RegisterEntryPoint<AnimalsSpawnSystem>();
             
-            builder.Register<AssetProvider>(Lifetime.Singleton) .As<IAssetProvider>();
+            builder.Register<AssetProvider>(Lifetime.Singleton).As<IAssetProvider>();
+
+            builder.Register<AnimalsController>(Lifetime.Singleton).As<IAnimalsController>();
             
             builder.RegisterInstance(_interactionsConfig).As<IInteractionConfig>();
-            builder.Register<InteractionResolver>(Lifetime.Singleton) .As<IInteractionResolver>();
-            builder.Register<AnimalCollisionSystem>(Lifetime.Singleton) .As<IAnimalCollisionSystem>();
+            builder.Register<InteractionResolver>(Lifetime.Singleton).As<IInteractionResolver>();
+            builder.Register<AnimalCollisionSystem>(Lifetime.Singleton).As<IAnimalCollisionSystem>();
             
             builder.RegisterEntryPoint<MovementSystem>().As<IMovementSystem>();
 

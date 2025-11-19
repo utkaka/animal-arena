@@ -41,9 +41,11 @@ namespace AnimalArena.Assets
 
         public void Release(GameObject gameObject)
         {
-            Assert.IsTrue(_poolByInstance.ContainsKey(gameObject));
-            var pool = _poolByInstance[gameObject];
-            _poolByInstance.Remove(gameObject);
+            if (!_poolByInstance.Remove(gameObject, out var pool))
+            {
+                OnDestroyInstance(gameObject);
+                return;
+            }
             pool.Release(gameObject);
         }
         

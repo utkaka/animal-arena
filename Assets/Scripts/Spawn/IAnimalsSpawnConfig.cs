@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace AnimalArena.Spawn
 {
-    public interface ISpawnConfig
+    public interface IAnimalsSpawnConfig
     {
         Vector2 SpawnDelayRange { get; }
-        IReadOnlyList<GameObject> ObjectsList { get; }
+        IReadOnlyList<GameObject> AnimalPrefabsList { get; }
     }
 }

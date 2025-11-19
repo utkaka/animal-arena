@@ -1,21 +1,25 @@
+using AnimalArena.Animals;
 using AnimalArena.Assets;
 using UnityEngine;
+using UnityEngine.Assertions;
 using VContainer;
 using VContainer.Unity;
 
 namespace AnimalArena.Spawn
 {
-    public class SpawnSystem : ITickable
+    public class AnimalsSpawnSystem : ITickable
     {
         private readonly IAssetProvider _assetProvider;
-        private readonly ISpawnConfig _spawnConfig;
+        private readonly IAnimalsSpawnConfig _animalsSpawnConfig;
+        private readonly IAnimalsController _animalsController;
         private readonly Camera _camera;
         private float _nextSpawnTime;
 
-        public SpawnSystem(IAssetProvider assetProvider, ISpawnConfig spawnConfig, Camera camera)
+        public AnimalsSpawnSystem(IAssetProvider assetProvider, IAnimalsSpawnConfig animalsSpawnConfig, IAnimalsController animalsController, Camera camera)
         {
             _assetProvider = assetProvider;
-            _spawnConfig = spawnConfig;
+            _animalsSpawnConfig = animalsSpawnConfig;
+            _animalsController = animalsController;
             _camera = camera;
             ScheduleNextSpawn();
         }
@@ -34,19 +38,21 @@ namespace AnimalArena.Spawn
         {
             _nextSpawnTime =
                 Time.time
-                + Random.Range(_spawnConfig.SpawnDelayRange.x, _spawnConfig.SpawnDelayRange.y);
+                + Random.Range(_animalsSpawnConfig.SpawnDelayRange.x, _animalsSpawnConfig.SpawnDelayRange.y);
         }
 
         private void SpawnObject()
         {
-            if (_spawnConfig.ObjectsList.Count == 0) return;
+            if (_animalsSpawnConfig.AnimalPrefabsList.Count == 0) return;
             Vector3 vp = new Vector3(Random.value, Random.value, 10f);
             Vector3 pos = _camera.ViewportToWorldPoint(vp);
             pos.y = 0f;
 
-            var prefab = _spawnConfig.ObjectsList[Random.Range(0, _spawnConfig.ObjectsList.Count)];
+            var prefab = _animalsSpawnConfig.AnimalPrefabsList[Random.Range(0, _animalsSpawnConfig.AnimalPrefabsList.Count)];
             var instance = _assetProvider.Instantiate(prefab, pos, Quaternion.identity);
-
+            var animal = instance.GetComponent<Animal>();
+            Assert.IsNotNull(animal);
+            _animalsController.OnSpawned(animal);
             var rb = instance.GetComponent<Rigidbody>();
             if (rb)
                 rb.AddForce(
