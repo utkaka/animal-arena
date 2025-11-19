@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Pool;
 using VContainer;
 using VContainer.Unity;
@@ -56,7 +55,6 @@ namespace AnimalArena.Assets
         {
             if (!_poolByInstance.Remove(gameObject, out var pool))
             {
-                Debug.Log("OnDestroyInstance");
                 OnDestroyInstance(gameObject);
                 return;
             }

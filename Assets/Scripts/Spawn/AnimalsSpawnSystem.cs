@@ -3,7 +3,6 @@ using AnimalArena.Assets;
 using AnimalArena.GameField;
 using UnityEngine;
 using UnityEngine.Assertions;
-using VContainer;
 using VContainer.Unity;
 
 namespace AnimalArena.Spawn

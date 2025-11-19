@@ -1,7 +1,5 @@
 using AnimalArena.Animals.Movement;
-using AnimalArena.Assets;
 using UnityEngine;
-using VContainer;
 using Random = UnityEngine.Random;
 
 namespace AnimalArena.Animals

@@ -1,6 +1,5 @@
 using AnimalArena.Animals;
 using AnimalArena.Statistics;
-using UnityEngine;
 using VContainer.Unity;
 
 namespace AnimalArena.UI.Statistics
@@ -19,7 +18,6 @@ namespace AnimalArena.UI.Statistics
 
         public void Initialize()
         {
-            Debug.Log("Initializing view model");
             _view.ShowStatistics(_model.GetOverallStatistics());
             _model.OnChanged += ModelOnChanged;
         }

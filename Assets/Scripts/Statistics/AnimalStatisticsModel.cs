@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using AnimalArena.Animals;
 using AnimalArena.Spawn;
-using UnityEngine;
 using UnityEngine.Assertions;
 using VContainer.Unity;
 

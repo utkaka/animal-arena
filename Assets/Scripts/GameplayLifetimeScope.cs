@@ -40,9 +40,12 @@ namespace AnimalArena
             builder.RegisterInstance(_interactionsConfig).As<IInteractionConfig>();
             builder.Register<InteractionResolver>(Lifetime.Singleton).As<IInteractionResolver>();
             builder.Register<AnimalCollisionSystem>(Lifetime.Singleton).As<IAnimalCollisionSystem>();
-            
-            builder.RegisterInstance(_effectsConfig).As<IEffectsConfig>();
-            builder.RegisterEntryPoint<CanvasEffectsSystem>();
+
+            if (_effectsConfig != null)
+            {
+                builder.RegisterInstance(_effectsConfig).As<IEffectsConfig>();
+                builder.RegisterEntryPoint<CanvasEffectsSystem>();
+            }
             
             builder.RegisterEntryPoint<AnimalStatisticsModel>() .As<IAnimalStatisticsModel>();
             
@@ -50,8 +53,11 @@ namespace AnimalArena
 
             builder.RegisterComponentInHierarchy<Camera>();
 
-            builder.RegisterComponentInNewPrefab(_statisticsView, Lifetime.Singleton).As<IAnimalStatisticsView>();
-            builder.RegisterEntryPoint<AnimalStatisticsViewModel>();
+            if (_statisticsView != null)
+            {
+                builder.RegisterComponentInNewPrefab(_statisticsView, Lifetime.Singleton).As<IAnimalStatisticsView>();
+                builder.RegisterEntryPoint<AnimalStatisticsViewModel>();
+            }
         }
     }
 }
