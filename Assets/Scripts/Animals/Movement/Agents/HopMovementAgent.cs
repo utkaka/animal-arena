@@ -4,12 +4,11 @@ using VContainer;
 
 namespace AnimalArena.Animals.Movement.Agents
 {
+    [RequireComponent(typeof(Rigidbody))]
     internal class HopMovementAgent : MonoBehaviour, IMovementAgent
     {
         public event Action OnMovementCompleted;
         
-        [SerializeField]
-        private Rigidbody _rigidBody;
         [SerializeField]
         private float _jumpHeight;
         [SerializeField]
@@ -19,6 +18,7 @@ namespace AnimalArena.Animals.Movement.Agents
         
         public MovementState State { get; private set; }
         
+        private Rigidbody _rigidBody;
         private IMovementSystem _movementSystem;
         private Vector3 _targetPosition;
         private bool _isJumping;
@@ -66,6 +66,11 @@ namespace AnimalArena.Animals.Movement.Agents
             {
                 _isJumping = false;
             }
+        }
+
+        private void Awake()
+        {
+            _rigidBody = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()

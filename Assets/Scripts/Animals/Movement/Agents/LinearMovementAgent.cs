@@ -4,12 +4,11 @@ using VContainer;
 
 namespace AnimalArena.Animals.Movement.Agents
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class LinearMovementAgent : MonoBehaviour, IMovementAgent
     {
         public event Action OnMovementCompleted;
         
-        [SerializeField]
-        private Rigidbody _rigidBody;
         [SerializeField]
         private float _speed;
         [SerializeField]
@@ -17,6 +16,7 @@ namespace AnimalArena.Animals.Movement.Agents
         
         public MovementState State { get; private set; }
         
+        private Rigidbody _rigidBody;
         private IMovementSystem _movementSystem;
         private Vector3 _targetPosition;
         
@@ -55,9 +55,14 @@ namespace AnimalArena.Animals.Movement.Agents
                     
             Vector3 direction = toTarget / distance;
             float step = _speed * deltaTime;
-            Vector3 newPos = currentPosition + direction * step;
+            Vector3 newPos = currentPosition + direction * Mathf.Min(step, distance);
 
             _rigidBody.MovePosition(newPos);
+        }
+
+        private void Awake()
+        {
+            _rigidBody = GetComponent<Rigidbody>();
         }
 
         private void OnEnable()
