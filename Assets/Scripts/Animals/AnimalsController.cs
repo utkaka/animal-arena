@@ -9,6 +9,8 @@ namespace AnimalArena.Animals
 {
     public class AnimalsController : IAnimalsController, ITickable
     {
+        public event Action<Animal> AnimalDied;
+        public event Action<Animal> AnimalSpawned;
         public event Action<Animal> AnimalEaten;
         
         private IAssetProvider _assetProvider;
@@ -25,11 +27,13 @@ namespace AnimalArena.Animals
         public void OnSpawned(Animal animal)
         {
             _animals.Add(animal);
+            AnimalSpawned?.Invoke(animal);
         }
 
         public void Kill(Animal animal)
         {
             if (animal.IsDead) return;
+            AnimalDied?.Invoke(animal);
             AnimalEaten?.Invoke(animal);
             animal.MarkAsDead();
             _animals.Remove(animal);

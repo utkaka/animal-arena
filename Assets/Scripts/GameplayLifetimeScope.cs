@@ -6,6 +6,8 @@ using AnimalArena.Assets;
 using AnimalArena.Fx;
 using AnimalArena.GameField;
 using AnimalArena.Spawn;
+using AnimalArena.Statistics;
+using AnimalArena.UI.Statistics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using VContainer;
@@ -21,6 +23,8 @@ namespace AnimalArena
         private ScriptableInteractionsConfig _interactionsConfig;
         [SerializeField]
         private ScriptableEffectsConfig _effectsConfig;
+        [SerializeField]
+        private AnimalStatisticsView _statisticsView;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -40,9 +44,14 @@ namespace AnimalArena
             builder.RegisterInstance(_effectsConfig).As<IEffectsConfig>();
             builder.RegisterEntryPoint<CanvasEffectsSystem>();
             
+            builder.RegisterEntryPoint<AnimalStatisticsModel>() .As<IAnimalStatisticsModel>();
+            
             builder.RegisterEntryPoint<MovementSystem>().As<IMovementSystem>();
 
             builder.RegisterComponentInHierarchy<Camera>();
+
+            builder.RegisterComponentInNewPrefab(_statisticsView, Lifetime.Singleton).As<IAnimalStatisticsView>();
+            builder.RegisterEntryPoint<AnimalStatisticsViewModel>();
         }
     }
 }
