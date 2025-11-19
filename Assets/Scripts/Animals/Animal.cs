@@ -16,6 +16,11 @@ namespace AnimalArena.Animals
 
         private IMovementAgent _movementAgent;
 
+        public void MoveTo(Vector3 destination)
+        {
+            _movementAgent.MoveTo(destination);
+        }
+
         private void Awake()
         {
             _movementAgent = GetComponent<IMovementAgent>();

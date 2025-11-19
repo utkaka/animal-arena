@@ -1,5 +1,6 @@
 using AnimalArena.Animals;
 using AnimalArena.Assets;
+using AnimalArena.GameField;
 using UnityEngine;
 using UnityEngine.Assertions;
 using VContainer;
@@ -12,15 +13,15 @@ namespace AnimalArena.Spawn
         private readonly IAssetProvider _assetProvider;
         private readonly IAnimalsSpawnConfig _animalsSpawnConfig;
         private readonly IAnimalsController _animalsController;
-        private readonly Camera _camera;
+        private readonly IFieldBounds _fieldBounds;
         private float _nextSpawnTime;
 
-        public AnimalsSpawnSystem(IAssetProvider assetProvider, IAnimalsSpawnConfig animalsSpawnConfig, IAnimalsController animalsController, Camera camera)
+        public AnimalsSpawnSystem(IAssetProvider assetProvider, IAnimalsSpawnConfig animalsSpawnConfig, IAnimalsController animalsController, IFieldBounds fieldBounds)
         {
             _assetProvider = assetProvider;
             _animalsSpawnConfig = animalsSpawnConfig;
             _animalsController = animalsController;
-            _camera = camera;
+            _fieldBounds = fieldBounds;
             ScheduleNextSpawn();
         }
 
@@ -44,9 +45,7 @@ namespace AnimalArena.Spawn
         private void SpawnObject()
         {
             if (_animalsSpawnConfig.AnimalPrefabsList.Count == 0) return;
-            Vector3 vp = new Vector3(Random.value, Random.value, 10f);
-            Vector3 pos = _camera.ViewportToWorldPoint(vp);
-            pos.y = 0f;
+            Vector3 pos = _fieldBounds.GetRandomPointInside();
 
             var prefab = _animalsSpawnConfig.AnimalPrefabsList[Random.Range(0, _animalsSpawnConfig.AnimalPrefabsList.Count)];
             var instance = _assetProvider.Instantiate(prefab, pos, Quaternion.identity);

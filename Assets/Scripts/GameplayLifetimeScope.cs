@@ -3,6 +3,7 @@ using AnimalArena.Animals.Collisions;
 using AnimalArena.Animals.Interactions;
 using AnimalArena.Animals.Movement;
 using AnimalArena.Assets;
+using AnimalArena.GameField;
 using AnimalArena.Spawn;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,6 +27,8 @@ namespace AnimalArena
             builder.Register<AssetProvider>(Lifetime.Singleton).As<IAssetProvider>();
 
             builder.Register<AnimalsController>(Lifetime.Singleton).As<IAnimalsController>();
+            
+            builder.Register<CameraField>(Lifetime.Singleton).As<IFieldBounds>();
             
             builder.RegisterInstance(_interactionsConfig).As<IInteractionConfig>();
             builder.Register<InteractionResolver>(Lifetime.Singleton).As<IInteractionResolver>();
