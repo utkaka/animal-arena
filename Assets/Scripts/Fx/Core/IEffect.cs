@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace AnimalArena.Fx.Components
+namespace AnimalArena.Fx.Core
 {
     public interface IEffect
     {
