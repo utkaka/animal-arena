@@ -37,7 +37,7 @@ namespace AnimalArena.Statistics.ViewModels
             _animalsController.AnimalDied += OnAnimalDied;
         }
         
-        private void OnAnimalSpawned(Animal animal) {
+        private void OnAnimalSpawned(IAnimal animal) {
             AnimalType type = animal.Type;
             var animalStatistics = _statistics.GetValueOrDefault(type);
             animalStatistics.Alive++;
@@ -45,7 +45,7 @@ namespace AnimalArena.Statistics.ViewModels
             OnChanged?.Invoke(type, animalStatistics);
         }
 
-        private void OnAnimalDied(Animal animal)
+        private void OnAnimalDied(IAnimal animal)
         {
             AnimalType type = animal.Type;
             var animalStatistics = _statistics.GetValueOrDefault(type);

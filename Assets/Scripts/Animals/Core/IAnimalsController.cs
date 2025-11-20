@@ -5,10 +5,10 @@ namespace AnimalArena.Animals.Core
 {
     public interface IAnimalsController
     {
-        event Action<Animal> AnimalDied;
-        event Action<Animal> AnimalSpawned;
-        event Action<Animal> AnimalEaten;
-        void OnSpawned(Animal animal);
-        void Kill(Animal animal);
+        event Action<IAnimal> AnimalDied;
+        event Action<IAnimal> AnimalSpawned;
+        event Action<IAnimal> AnimalEaten;
+        void OnSpawned(IAnimal animal);
+        void Kill(IAnimal animal);
     }
 }

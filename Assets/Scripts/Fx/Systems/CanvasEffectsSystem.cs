@@ -44,9 +44,9 @@ namespace AnimalArena.Fx.Systems
             _assetProvider.Release(animalEatenEffect);
         }
 
-        private void OnAnimalEaten(Animal animal)
+        private void OnAnimalEaten(IAnimal animal)
         {
-            GameObject animalEatenEffect = _assetProvider.Instantiate(_effectsConfig.AteEffectPrefab, animal.transform.position);
+            GameObject animalEatenEffect = _assetProvider.Instantiate(_effectsConfig.AteEffectPrefab, animal.GameObject.transform.position);
             IEffect effect =  animalEatenEffect.GetComponent<IEffect>();
             Assert.IsNotNull(effect);
             effect.Complete += OnEffectComplete;

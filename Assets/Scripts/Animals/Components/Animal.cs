@@ -5,13 +5,14 @@ using Random = UnityEngine.Random;
 
 namespace AnimalArena.Animals.Components
 {
-    public class Animal : MonoBehaviour
+    public class Animal : MonoBehaviour, IAnimal
     {
         [SerializeField]
         private AnimalType _type;
     
         public bool IsDead { get; private set; }
         public AnimalType Type => _type;
+        public GameObject GameObject => gameObject;
 
         private IMovementAgent _movementAgent;
 

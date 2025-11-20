@@ -5,6 +5,6 @@ namespace AnimalArena.Animals.Core
 {
     public interface IAnimalCollisionSystem
     {
-        void RegisterAnimalsCollision(Animal animal, GameObject collisionObject);
+        void RegisterAnimalsCollision(IAnimal animal, GameObject collisionObject);
     }
 }

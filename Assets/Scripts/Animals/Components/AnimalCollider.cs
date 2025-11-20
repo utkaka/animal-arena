@@ -6,7 +6,7 @@ namespace AnimalArena.Animals.Components
 {
     public class AnimalCollider : MonoBehaviour
     {
-        private Animal _animal;
+        private IAnimal _animal;
         private IAnimalCollisionSystem _collisionSystem;
 
         [Inject]
@@ -17,7 +17,7 @@ namespace AnimalArena.Animals.Components
 
         private void Awake()
         {
-            _animal = GetComponent<Animal>();
+            _animal = GetComponent<IAnimal>();
         }
 
         private void OnCollisionEnter(Collision collision)

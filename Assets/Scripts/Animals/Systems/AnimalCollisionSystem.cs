@@ -17,15 +17,15 @@ namespace AnimalArena.Animals.Systems
             _animalsController = animalsController;
         }
         
-        public void RegisterAnimalsCollision(Animal animal, GameObject collisionObject)
+        public void RegisterAnimalsCollision(IAnimal animal, GameObject collisionObject)
         {
-            if (!collisionObject.TryGetComponent<Animal>(out var other)) return;
+            if (!collisionObject.TryGetComponent<IAnimal>(out var other)) return;
             if (other == null) return;
             if (TryPerformInteraction(animal, other)) return;
             TryPerformInteraction(other, animal);
         }
 
-        private bool TryPerformInteraction(Animal animal1, Animal animal2)
+        private bool TryPerformInteraction(IAnimal animal1, IAnimal animal2)
         {
             InteractionActionType action = _interactionResolver.Resolve(animal1.Type, animal2.Type);
             switch (action)
