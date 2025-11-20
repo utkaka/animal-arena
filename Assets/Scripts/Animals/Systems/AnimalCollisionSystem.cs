@@ -1,5 +1,4 @@
 using System;
-using AnimalArena.Animals.Components;
 using AnimalArena.Animals.Core;
 using AnimalArena.Animals.Core.Interactions;
 using UnityEngine;

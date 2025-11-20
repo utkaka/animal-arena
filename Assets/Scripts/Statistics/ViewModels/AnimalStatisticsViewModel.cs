@@ -1,3 +1,4 @@
+using System;
 using AnimalArena.Animals.Core;
 using AnimalArena.Statistics.Core;
 using AnimalArena.Statistics.UI;
@@ -5,7 +6,7 @@ using VContainer.Unity;
 
 namespace AnimalArena.Statistics.ViewModels
 {
-    public class AnimalStatisticsViewModel : IInitializable
+    public class AnimalStatisticsViewModel : IInitializable, IDisposable
     {
         
         private readonly IAnimalStatisticsView  _view;
@@ -21,6 +22,11 @@ namespace AnimalArena.Statistics.ViewModels
         {
             _view.ShowStatistics(_model.GetOverallStatistics());
             _model.OnChanged += ModelOnChanged;
+        }
+
+        public void Dispose()
+        {
+            _model.OnChanged -= ModelOnChanged;
         }
 
         private void ModelOnChanged(AnimalType type, AnimalTypeStatistics statistics)

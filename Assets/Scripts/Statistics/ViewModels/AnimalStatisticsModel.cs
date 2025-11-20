@@ -9,7 +9,7 @@ using VContainer.Unity;
 
 namespace AnimalArena.Statistics.ViewModels
 {
-    public class AnimalStatisticsModel : IAnimalStatisticsModel, IInitializable
+    public class AnimalStatisticsModel : IAnimalStatisticsModel, IInitializable, IDisposable
     {
         public event Action<AnimalType, AnimalTypeStatistics> OnChanged;
         
@@ -36,7 +36,13 @@ namespace AnimalArena.Statistics.ViewModels
             _animalsController.AnimalSpawned += OnAnimalSpawned;
             _animalsController.AnimalDied += OnAnimalDied;
         }
-        
+
+        public void Dispose()
+        {
+            _animalsController.AnimalSpawned -= OnAnimalSpawned;
+            _animalsController.AnimalDied -= OnAnimalDied;
+        }
+
         private void OnAnimalSpawned(IAnimal animal) {
             AnimalType type = animal.Type;
             var animalStatistics = _statistics.GetValueOrDefault(type);

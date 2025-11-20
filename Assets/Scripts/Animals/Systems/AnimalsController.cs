@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
-using AnimalArena.Animals.Components;
 using AnimalArena.Animals.Core;
-using AnimalArena.Assets;
 using AnimalArena.Assets.Core;
-using AnimalArena.GameField;
 using AnimalArena.GameField.Core;
 using UnityEngine;
 using VContainer.Unity;

@@ -1,16 +1,16 @@
-using AnimalArena.Animals.Components;
+using System;
 using AnimalArena.Animals.Core;
 using AnimalArena.Assets.Core;
-using AnimalArena.Fx.Components;
 using AnimalArena.Fx.Core;
 using UnityEngine;
 using UnityEngine.Assertions;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace AnimalArena.Fx.Systems
 {
     //FX on Canvas is a bad idea, but, probably, the easiest to implement quickly
-    public class CanvasEffectsSystem : IInitializable
+    public class CanvasEffectsSystem : IInitializable, IDisposable
     {
         private readonly IEffectsConfig _effectsConfig;
         private readonly IAssetProvider _assetProvider;
@@ -22,12 +22,17 @@ namespace AnimalArena.Fx.Systems
             _effectsConfig = effectsConfig;
             _assetProvider = assetProvider;
             _animalsController =  animalsController;
-            _animalsController.AnimalEaten += OnAnimalEaten;
         }
         
         public void Initialize()
         {
+            _animalsController.AnimalEaten += OnAnimalEaten;
             SetupCanvas();
+        }
+        
+        public void Dispose()
+        {
+            _animalsController.AnimalEaten -= OnAnimalEaten;
         }
 
         private void SetupCanvas()

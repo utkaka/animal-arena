@@ -1,5 +1,4 @@
 using System;
-using AnimalArena.Animals.Components;
 
 namespace AnimalArena.Animals.Core
 {

@@ -1,4 +1,3 @@
-using AnimalArena.Animals.Components;
 using UnityEngine;
 
 namespace AnimalArena.Animals.Core
